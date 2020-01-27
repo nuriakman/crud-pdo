@@ -16,17 +16,17 @@
         die("HATA: Böyle bir kayıt bulunamadı");
     }else{
         // Kaydı getirelim
-        $data = $SORGU->fetch();
+        $KAYIT = $SORGU->fetch();
     }
 
-    if(isset($_POST['submit'])){
-        // HTML Etiket girişinden kaynaklı XSS doğmasını engelleyelim
-        $adisoyadi = htmlentities($_POST['adisoyadi']);
-        $telefonu  = htmlentities($_POST['telefonu']);
-        $birimi    = htmlentities($_POST['birimi']);
+    if(isset($_POST['adisoyadi'])){
+
+        $adisoyadi = $_POST['adisoyadi'];
+        $telefonu  = $_POST['telefonu'];
+        $birimi    = $_POST['birimi'];
 
         // Sorgumuzu hazırlayalım
-        $SORGU = $DB->prepare("UPDATE rehber SET adisoyadi=:adisoyadi,telefonu=:telefonu,birimi=:birimi WHERE id=:id");
+        $SORGU = $DB->prepare("UPDATE rehber SET adisoyadi=:adisoyadi, telefonu=:telefonu, birimi=:birimi WHERE id=:id");
         // Sorgudaki parametrelerimizi yerlerine koyalım
         $SORGU->bindParam(":adisoyadi", $adisoyadi);
         $SORGU->bindParam(":telefonu", $telefonu);
@@ -49,9 +49,15 @@
     <body>
         <h1>Telefon Rehberi</h1>
         <form method="post">
-            Adı Soyadı: <input required type="text" name="adisoyadi" placeholder="adisoyadi" value="<?php echo $data['adisoyadi'] ?>"/> <br>
-            Telefonu: <input required type="text" name="telefonu" placeholder="telefonu" value="<?php echo $data['telefonu'] ?>"/> <br>
-            Birimi: <input required type="text" name="birimi" placeholder="No birimi" value="<?php echo $data['birimi'] ?>"/> <br>
+            Adı Soyadı: 
+                <input required type="text" name="adisoyadi" 
+                value="<?php echo $KAYIT['adisoyadi'] ?>"/> <br>
+            Telefonu: 
+                <input required type="text" name="telefonu"
+                value="<?php echo $KAYIT['telefonu'] ?>"/> <br>
+            Birimi: 
+                <input required type="text" name="birimi" 
+                value="<?php echo $KAYIT['birimi'] ?>"/> <br>
             <input type="submit" name="submit" value="Güncellemeleri Kaydet" />
         </form>
     </body>
