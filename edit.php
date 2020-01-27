@@ -2,7 +2,7 @@
     include 'db_baglan.php';
 
     if(!isset($_GET['id'])){
-        die("Error: ID Tidak Dimasukkan");
+        die("HATA: ID Değeri yok!");
     }
 
     // Sorgumuzu hazırlayalım
