@@ -5,9 +5,9 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP DATABASE IF EXISTS `TELEFON_REHBERI`;
+DROP DATABASE IF EXISTS `telefon_rehberi`;
 CREATE DATABASE `telefon_rehberi` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_turkish_ci */;
-USE `TELEFON_REHBERI`;
+USE `telefon_rehberi`;
 
 DROP TABLE IF EXISTS `rehber`;
 CREATE TABLE `rehber` (
