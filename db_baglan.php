@@ -1,7 +1,7 @@
 <?php
     // Veritabanı Bağlantı ayarları
     $host     = "localhost";
-    $DBname   = "TELEFON_REHBERI";
+    $DBname   = "telefon_rehberi";
     $username = "root";
     $password = "root";
 
