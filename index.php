@@ -1,8 +1,11 @@
 <?php
     include 'db_baglan.php';
 
+    $ARANANAD = $_GET["ara"];
+
     // Çalıştırılacak sorgu
-    $SORGU = $DB->prepare("SELECT * FROM rehber");
+    $SORGU = $DB->prepare("SELECT * FROM rehber 
+        WHERE adisoyadi LIKE '%$ARANANAD%' ");
     // Sorguyu çalıştır
     $SORGU->execute();
     // Kayıtları Getir
@@ -17,6 +20,13 @@
     </head>
     <body>
         <h1>Telefon Rehberi</h1>
+
+    <p>
+        <form method="GET">
+            <input type="text" name="ara" placeholder="Arama yapın...">
+            <input type="submit" value="Ara!">
+        </form>
+    </p>
         
         <p>
             <a href="create.php"><button type="button">Yeni kişi ekle</button></a>
@@ -37,7 +47,7 @@
                     Birimi
                 </th>
                 <th>
-                    Aksi
+                    İşlem
                 </th>
             </tr>
             <!-- Sorgumuza gelen cevap içindeki kayıtları listeleyelim -->
