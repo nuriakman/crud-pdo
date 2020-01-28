@@ -1,11 +1,15 @@
 <?php
     include 'db_baglan.php';
 
-    $ARANANAD = $_GET["ara"];
-
-    // Çalıştırılacak sorgu
-    $SORGU = $DB->prepare("SELECT * FROM rehber 
-        WHERE adisoyadi LIKE '%$ARANANAD%' ");
+    if(isset($_GET["ara"])) {
+        $ARANANAD = $_GET["ara"];
+        // Çalıştırılacak sorgu
+        $SORGU = $DB->prepare("SELECT * FROM rehber 
+            WHERE adisoyadi LIKE '%$ARANANAD%' ");
+    } else {
+        // Çalıştırılacak sorgu
+        $SORGU = $DB->prepare("SELECT * FROM rehber");
+    }
     // Sorguyu çalıştır
     $SORGU->execute();
     // Kayıtları Getir

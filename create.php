@@ -10,6 +10,8 @@
         $SORGU->bindParam(":birimi",    $birimi);
         // SQL Sorgumuzu çalıştıralım
         $SORGU->execute();
+        $YeniKayitID = $DB->lastInsertId();
+        die("$YeniKayitID Kayıt numarası ile kaydedildi")
         // İşlem tamam. Ana sayfaya yönlendirelim.
         header("location: index.php");
         die();
