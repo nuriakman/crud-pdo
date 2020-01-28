@@ -2,11 +2,6 @@
     include 'db_baglan.php';
 
     if(isset($_POST['submit'])){
-        // HTML Etiket girişinden kaynaklı XSS doğmasını engelleyelim
-        $adisoyadi = htmlentities($_POST['adisoyadi']);
-        $telefonu  = htmlentities($_POST['telefonu']);
-        $birimi    = htmlentities($_POST['birimi']);
-
         // Sorguyu hazırlayalım
         $SORGU = $DB->prepare("INSERT INTO rehber(adisoyadi, telefonu, birimi)
         VALUES (:adisoyadi,:telefonu,:birimi)");

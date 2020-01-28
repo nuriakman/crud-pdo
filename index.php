@@ -57,6 +57,8 @@
                         <?php echo $KAYIT['id'] ?>
                     </td>
                     <td>
+
+                        
                         <?php echo $KAYIT['adisoyadi'] ?>
                     </td>
                     <td>
