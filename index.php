@@ -3,9 +3,11 @@
 
     if(isset($_GET["ara"])) {
         $ARANANAD = $_GET["ara"];
+        $ARANANAD = "%$ARANANAD%";
         // Çalıştırılacak sorgu
         $SORGU = $DB->prepare("SELECT * FROM rehber 
-            WHERE adisoyadi LIKE '%$ARANANAD%' ");
+            WHERE adisoyadi LIKE :arananad ");
+        $SORGU->bindParam(":arananad", $ARANANAD);
     } else {
         // Çalıştırılacak sorgu
         $SORGU = $DB->prepare("SELECT * FROM rehber");
@@ -61,8 +63,6 @@
                         <?php echo $KAYIT['id'] ?>
                     </td>
                     <td>
-
-                        
                         <?php echo $KAYIT['adisoyadi'] ?>
                     </td>
                     <td>
