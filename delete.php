@@ -11,7 +11,12 @@
     $SORGU->bindParam(":id", $_GET["id"]);
     // Sorguyu çalıştıralım
     $SORGU->execute();
-    // İşlem tamam. Ana sayfaya yönlendirelim.
-    header("location: index.php");
+
+    echo "<h1>Silme başarılı !</h1>";
+    echo "<p>3 saniye içinde Ana Sayfaya yönleneceksiniz...</p>";
+    
+    // İşlem tamam. 3sn bekleyip, Ana sayfaya yönlendirelim.
+    header("Refresh:3; url=index.php");
     die();
+
 ?>
