@@ -21,21 +21,21 @@
 
     if(isset($_POST['adisoyadi'])){
 
-        $adisoyadi = $_POST['adisoyadi'];
-        $telefonu  = $_POST['telefonu'];
-        $birimi    = $_POST['birimi'];
-
         // Sorgumuzu hazırlayalım
         $SORGU = $DB->prepare("UPDATE rehber SET adisoyadi=:adisoyadi, telefonu=:telefonu, birimi=:birimi WHERE id=:id");
         // Sorgudaki parametrelerimizi yerlerine koyalım
-        $SORGU->bindParam(":adisoyadi", $adisoyadi);
-        $SORGU->bindParam(":telefonu", $telefonu);
-        $SORGU->bindParam(":birimi", $birimi);
-        $SORGU->bindParam(":id", $_GET['id']);
+        $SORGU->bindParam(":adisoyadi", $_POST["adisoyadi"]);
+        $SORGU->bindParam(":telefonu",  $_POST["telefonu"]);
+        $SORGU->bindParam(":birimi",    $_POST["birimi"]);
+        $SORGU->bindParam(":id",        $_GET['id']);
         // Sorguyu çalıştıralım
         $SORGU->execute();
-        // İşlem tamam. Ana sayfaya yönlendirelim.
-        header("location: index.php");
+
+        echo "<h1>Güncelleme başarılı !</h1>";
+        echo "<p>3 saniye içinde Ana Sayfaya yönleneceksiniz...</p>";
+        
+        // İşlem tamam. 3sn bekleyip, Ana sayfaya yönlendirelim.
+        header("Refresh:3; url=index.php");
         die();
     }
 ?>
