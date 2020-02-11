@@ -5,15 +5,23 @@
         // Sorguyu hazırlayalım
         $SORGU = $DB->prepare("INSERT INTO rehber(adisoyadi, telefonu, birimi)
         VALUES (:adisoyadi,:telefonu,:birimi)");
-        $SORGU->bindParam(":adisoyadi", $adisoyadi);
-        $SORGU->bindParam(":telefonu",  $telefonu);
-        $SORGU->bindParam(":birimi",    $birimi);
+        $SORGU->bindParam(":adisoyadi", $_POST["adisoyadi"]);
+        $SORGU->bindParam(":telefonu",  $_POST["telefonu"]);
+        $SORGU->bindParam(":birimi",    $_POST["birimi"]);
         // SQL Sorgumuzu çalıştıralım
         $SORGU->execute();
+        
+        // Son eklenen kaydın kayıt numarasını alalım
         $YeniKayitID = $DB->lastInsertId();
-        die("$YeniKayitID Kayıt numarası ile kaydedildi")
-        // İşlem tamam. Ana sayfaya yönlendirelim.
-        header("location: index.php");
+
+        echo "<h1>Yeni Kayıt Başarılı</h1>";
+        echo "<p>Bu kişi rehbere <b>$YeniKayitID kayıt numarası</b> ile eklendi</p>";
+
+        echo "<br><br><br>";
+        echo "<p>3 saniye içinde Ana Sayfaya yönleneceksiniz...</p>";
+        
+        // İşlem tamam. 3sn bekleyip, Ana sayfaya yönlendirelim.
+        header("Refresh:3; url=index.php");
         die();
     }
 ?>
