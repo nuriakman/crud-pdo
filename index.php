@@ -26,7 +26,7 @@
         <h1>Telefon Rehberi</h1>
 
     <p>
-        <form method="GET">
+        <form method="GET" autocomplete="off">
             <input type="text" name="ara" placeholder="Arama yapın...">
             <input type="submit" value="Ara!">
         </form>
@@ -73,7 +73,7 @@
                     </td>
                     <td>
                         <a href="edit.php?id=<?php echo $KAYIT['id']?>">Düzenle</a>
-                        <a href="delete.php?id=<?php echo $KAYIT['id']?>">Sil</a>
+                        <a href="delete.php?id=<?php echo $KAYIT['id']?>" onclick="return confirm('Bu kayıt silinecek. Emin misiniz?')">Sil</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
